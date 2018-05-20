@@ -4,4 +4,9 @@
     <string name="hint_search">Search by username</string>
     <string name="btn_go">Go</string>
     <string name="no_repositories">No repositories</string>
+    <string name="action_ok">OK</string>
+    <string name="empty_login">The field is required and should not be empty</string>
+    <string name="no_internet">No internet connection found.\nPlease check your connection.</string>
+    <string name="msg_api_calling">Loading</string>
+    <string name="user_not_found">User not found</string>
 </resources>

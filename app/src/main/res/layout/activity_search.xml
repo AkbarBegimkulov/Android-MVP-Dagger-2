@@ -58,7 +58,8 @@
                 android:textColor="@color/colorText"
                 android:textColorHint="@color/colorSearch"
                 android:textSize="14sp"
-                tools:ignore="LabelFor" />
+                tools:ignore="LabelFor"
+                tools:targetApi="jelly_bean" />
         </FrameLayout>
 
         <Space
@@ -76,6 +77,7 @@
             android:fontFamily="sans-serif-medium"
             android:text="@string/btn_go"
             android:textColor="@android:color/white"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            tools:targetApi="jelly_bean" />
     </LinearLayout>
 </FrameLayout>

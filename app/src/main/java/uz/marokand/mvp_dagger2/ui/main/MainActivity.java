@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity
             recyclerView.setVisibility(View.VISIBLE);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             recyclerView.setHasFixedSize(true);
-
+            recyclerView.setNestedScrollingEnabled(false);
             RepositoriesAdapter adapter = new RepositoriesAdapter(user.getmRepositories());
             adapter.setItemClickListener(this);
             recyclerView.setAdapter(adapter);

@@ -60,15 +60,15 @@ public class Repo implements Parcelable {
     }
 
     public String getWatchers() {
-        return String.valueOf(mWatchersCount);
+        return getFormattedNumber(mWatchersCount);
     }
 
     public String getStars() {
-        return String.valueOf(mStargazersCount);
+        return getFormattedNumber(mStargazersCount);
     }
 
     public String getForks() {
-        return String.valueOf(mForksCount);
+        return getFormattedNumber(mForksCount);
     }
 
     @Override
@@ -84,5 +84,18 @@ public class Repo implements Parcelable {
         dest.writeInt(mWatchersCount);
         dest.writeInt(mStargazersCount);
         dest.writeInt(mForksCount);
+    }
+
+    private String getFormattedNumber(int number) {
+        if (number < 1000) return String.valueOf(number);
+        StringBuilder result = new StringBuilder();
+        while (number > 0) {
+            if (number < 1000) result.insert(0, number);
+            else {
+                result.insert(0, ", " + number % 1000);
+            }
+            number /= 1000;
+        }
+        return result.toString();
     }
 }

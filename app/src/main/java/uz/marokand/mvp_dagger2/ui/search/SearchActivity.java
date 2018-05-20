@@ -182,10 +182,18 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
             }
             try {
                 JSONObject jsonObject = new JSONObject(result.response);
-                mUser.setAvatar(jsonObject.optString("avatar_url"));
-                mUser.setName(jsonObject.optString("name"));
-                mUser.setCompany(jsonObject.optString("company"));
-                mUser.setAddress(jsonObject.optString("location"));
+                mUser.setAvatar(jsonObject.has("avatar_url")
+                        && !jsonObject.isNull("avatar_url")
+                        ? jsonObject.getString("avatar_url") : "");
+                mUser.setName(jsonObject.has("name")
+                        && !jsonObject.isNull("name")
+                        ? jsonObject.getString("name") : "");
+                mUser.setCompany(jsonObject.has("company")
+                        && !jsonObject.isNull("company")
+                        ? jsonObject.getString("company") : "");
+                mUser.setAddress(jsonObject.has("location")
+                        && !jsonObject.isNull("location")
+                        ? jsonObject.getString("location") : "");
                 new GetRepoTask().execute("https://api.github.com/users/" + mUser.getLogin() + "/repos");
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -246,9 +254,15 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 for (int i = 0; i < length; i++) {
                     JSONObject jsonObject = jsonArray.optJSONObject(i);
                     if (jsonObject == null) continue;
-                    Repo repository = new Repo(jsonObject.optString("name"),
-                            jsonObject.optString("description"),
-                            jsonObject.optString("html_url"),
+                    Repo repository = new Repo(jsonObject.has("name")
+                            && !jsonObject.isNull("name")
+                            ? jsonObject.getString("name") : "",
+                            jsonObject.has("description")
+                                    && !jsonObject.isNull("description")
+                                    ? jsonObject.getString("description") : "",
+                            jsonObject.has("html_url")
+                                    && !jsonObject.isNull("html_url")
+                                    ? jsonObject.getString("html_url") : "",
                             jsonObject.optInt("watchers_count"),
                             jsonObject.optInt("stargazers_count"),
                             jsonObject.optInt("forks_count"));

@@ -19,7 +19,6 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="16dp"
             android:layout_marginTop="48dp"
-            android:background="@drawable/bg_avatar"
             app:riv_corner_radius="60dp"
             app:riv_oval="false" />
 
@@ -78,7 +77,8 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
         </FrameLayout>
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

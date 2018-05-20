@@ -22,42 +22,54 @@ import uz.marokand.mvp_dagger2.widget.RepositoriesAdapter;
 public class MainActivity extends AppCompatActivity
         implements RepositoriesAdapter.ItemClickListener {
 
+    private RoundedImageView mAvatarView;
+    private TextView mNameView;
+    private TextView mSecondaryView;
+    private TextView mEmptyView;
+    private RecyclerView mRecyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RoundedImageView avatarView = findViewById(R.id.avatar);
-        TextView nameView = findViewById(R.id.name_view);
-        TextView secondaryView = findViewById(R.id.secondary_view);
-        TextView emptyView = findViewById(R.id.no_repositories);
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        mAvatarView = findViewById(R.id.avatar);
+        mNameView = findViewById(R.id.name_view);
+        mSecondaryView = findViewById(R.id.secondary_view);
+        mEmptyView = findViewById(R.id.no_repositories);
+        mRecyclerView = findViewById(R.id.recycler_view);
 
         Intent intent = getIntent();
         User user = intent.getParcelableExtra(User.USER);
 
         if (user == null) return;
 
+        setUserInfos(user);
+
+
+    }
+
+    private void setUserInfos(User user){
         Glide.with(this)
                 .load(user.getAvatar())
                 .apply(new RequestOptions()
                         .fitCenter()
                         .placeholder(R.drawable.bg_avatar))
-                .into(avatarView);
-        nameView.setText(user.getName());
-        secondaryView.setText(user.getSecondaryText());
+                .into(mAvatarView);
+        mNameView.setText(user.getName());
+        mSecondaryView.setText(user.getSecondaryText());
 
 
         if (user.getmRepositories().size() == 0) {
-            emptyView.setVisibility(View.VISIBLE);
-            recyclerView.setVisibility(View.GONE);
+            mEmptyView.setVisibility(View.VISIBLE);
+            mRecyclerView.setVisibility(View.GONE);
         } else {
-            emptyView.setVisibility(View.GONE);
-            recyclerView.setVisibility(View.VISIBLE);
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            mEmptyView.setVisibility(View.GONE);
+            mRecyclerView.setVisibility(View.VISIBLE);
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
             RepositoriesAdapter adapter = new RepositoriesAdapter(user.getmRepositories());
             adapter.setItemClickListener(this);
-            recyclerView.setAdapter(adapter);
+            mRecyclerView.setAdapter(adapter);
         }
     }
 

@@ -22,7 +22,7 @@ public class RepositoriesAdapter extends RecyclerView.Adapter<RepositoryViewHold
     private List<Repo> mRepositories;
     private ItemClickListener mItemClickListener;
 
-    RepositoriesAdapter(List<Repo> repositories) {
+    public RepositoriesAdapter(List<Repo> repositories) {
         mRepositories = repositories == null ? new ArrayList<Repo>() : repositories;
     }
 

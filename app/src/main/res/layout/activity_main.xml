@@ -19,7 +19,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="16dp"
             android:layout_marginTop="48dp"
-            android:background="@drawable/ic_avatar"
+            android:background="@drawable/bg_avatar"
             app:riv_corner_radius="60dp"
             app:riv_oval="false" />
 

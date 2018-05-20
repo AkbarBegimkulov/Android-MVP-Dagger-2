@@ -13,6 +13,7 @@ import java.util.List;
 
 public class User implements Parcelable {
 
+    public static final String USER = "user";
     public static final Creator<User> CREATOR = new Creator<User>() {
         @Override
         public User createFromParcel(Parcel in) {
@@ -24,7 +25,9 @@ public class User implements Parcelable {
             return new User[size];
         }
     };
+
     private String mLogin;
+    private String mAvatar;
     private String mName;
     private String mCompany;
     private String mAddress;
@@ -32,6 +35,7 @@ public class User implements Parcelable {
 
     public User(String login) {
         mLogin = login;
+        mAvatar = "";
         mName = "";
         mCompany = "";
         mAddress = "";
@@ -40,6 +44,7 @@ public class User implements Parcelable {
 
     protected User(Parcel in) {
         mLogin = in.readString();
+        mAvatar = in.readString();
         mName = in.readString();
         mCompany = in.readString();
         mAddress = in.readString();
@@ -48,6 +53,14 @@ public class User implements Parcelable {
 
     public String getLogin() {
         return mLogin;
+    }
+
+    public String getAvatar() {
+        return mAvatar;
+    }
+
+    public void setAvatar(String avatar) {
+        mAvatar = avatar;
     }
 
     public String getName() {
@@ -93,6 +106,7 @@ public class User implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(mLogin);
+        dest.writeString(mAvatar);
         dest.writeString(mName);
         dest.writeString(mCompany);
         dest.writeString(mAddress);

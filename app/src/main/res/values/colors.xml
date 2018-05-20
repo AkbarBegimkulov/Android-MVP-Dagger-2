@@ -5,4 +5,5 @@
     <color name="colorText">#2F2F2F</color>
     <color name="colorTextSecondary">#828282</color>
     <color name="colorSearch">#999999</color>
+    <color name="colorLine">#EBEBEB</color>
 </resources>

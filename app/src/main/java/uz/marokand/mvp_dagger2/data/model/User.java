@@ -1,7 +1,10 @@
-package uz.marokand.mvp_dagger2.model;
+package uz.marokand.mvp_dagger2.data.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,10 +29,20 @@ public class User implements Parcelable {
         }
     };
 
+    @SerializedName("login")
+    @Expose
     private String mLogin;
+    @SerializedName("avatar_url")
+    @Expose
     private String mAvatar;
+    @SerializedName("name")
+    @Expose
     private String mName;
+    @SerializedName("company")
+    @Expose
     private String mCompany;
+    @SerializedName("location")
+    @Expose
     private String mAddress;
     private List<Repo> mRepositories;
 

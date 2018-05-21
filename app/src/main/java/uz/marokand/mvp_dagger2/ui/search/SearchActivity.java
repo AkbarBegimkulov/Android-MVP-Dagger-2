@@ -29,8 +29,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import uz.marokand.mvp_dagger2.R;
-import uz.marokand.mvp_dagger2.model.Repo;
-import uz.marokand.mvp_dagger2.model.User;
+import uz.marokand.mvp_dagger2.data.model.Repo;
+import uz.marokand.mvp_dagger2.data.model.User;
 import uz.marokand.mvp_dagger2.ui.main.MainActivity;
 
 public class SearchActivity extends AppCompatActivity implements View.OnClickListener {

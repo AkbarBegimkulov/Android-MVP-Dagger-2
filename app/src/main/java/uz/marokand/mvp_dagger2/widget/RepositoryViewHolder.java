@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import uz.marokand.mvp_dagger2.R;
-import uz.marokand.mvp_dagger2.model.Repo;
+import uz.marokand.mvp_dagger2.data.model.Repo;
 
 /**
  * @author akbar

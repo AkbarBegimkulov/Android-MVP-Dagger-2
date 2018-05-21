@@ -1,7 +1,10 @@
-package uz.marokand.mvp_dagger2.model;
+package uz.marokand.mvp_dagger2.data.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 /**
  * @author akbar
@@ -21,11 +24,24 @@ public class Repo implements Parcelable {
             return new Repo[size];
         }
     };
+
+    @SerializedName("name")
+    @Expose
     private String mName;
+    @SerializedName("description")
+    @Expose
     private String mDescription;
+    @SerializedName("html_url")
+    @Expose
     private String mHtmlUrl;
+    @SerializedName("watchers_count")
+    @Expose
     private int mWatchersCount;
+    @SerializedName("stargazers_count")
+    @Expose
     private int mStargazersCount;
+    @SerializedName("forks_count")
+    @Expose
     private int mForksCount;
 
     public Repo(String name, String description, String htmlUrl,

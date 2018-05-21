@@ -15,8 +15,8 @@ import com.bumptech.glide.request.RequestOptions;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import uz.marokand.mvp_dagger2.R;
-import uz.marokand.mvp_dagger2.model.Repo;
-import uz.marokand.mvp_dagger2.model.User;
+import uz.marokand.mvp_dagger2.data.model.Repo;
+import uz.marokand.mvp_dagger2.data.model.User;
 import uz.marokand.mvp_dagger2.widget.RepositoriesAdapter;
 
 public class MainActivity extends AppCompatActivity

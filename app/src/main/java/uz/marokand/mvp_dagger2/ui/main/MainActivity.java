@@ -64,14 +64,14 @@ public class MainActivity extends AppCompatActivity
         mSecondaryView.setText(user.getSecondaryText());
 
 
-        if (user.getmRepositories().size() == 0) {
+        if (user.getRepositories().size() == 0) {
             mEmptyView.setVisibility(View.VISIBLE);
             mRecyclerView.setVisibility(View.GONE);
         } else {
             mEmptyView.setVisibility(View.GONE);
             mRecyclerView.setVisibility(View.VISIBLE);
             mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-            RepositoriesAdapter adapter = new RepositoriesAdapter(user.getmRepositories());
+            RepositoriesAdapter adapter = new RepositoriesAdapter(user.getRepositories());
             adapter.setItemClickListener(this);
             mRecyclerView.setAdapter(adapter);
         }

@@ -68,6 +68,10 @@ public class User implements Parcelable {
         return mLogin;
     }
 
+    public void setLogin(String login) {
+        mLogin = login;
+    }
+
     public String getAvatar() {
         return mAvatar;
     }
@@ -81,15 +85,23 @@ public class User implements Parcelable {
     }
 
     public void setName(String name) {
-        this.mName = name;
+        mName = name;
+    }
+
+    public String getCompany() {
+        return mCompany;
     }
 
     public void setCompany(String company) {
-        this.mCompany = company;
+        mCompany = company;
+    }
+
+    public String getAddress() {
+        return mAddress;
     }
 
     public void setAddress(String address) {
-        this.mAddress = address;
+        mAddress = address;
     }
 
     public String getSecondaryText() {
@@ -103,12 +115,17 @@ public class User implements Parcelable {
         return secondaryText;
     }
 
-    public List<Repo> getmRepositories() {
+    public List<Repo> getRepositories() {
         return mRepositories;
     }
 
     public void addRepository(Repo repo) {
         mRepositories.add(repo);
+    }
+
+    public void addRepositories(List<Repo> repositories) {
+        if (repositories == null) return;
+        mRepositories.addAll(repositories);
     }
 
     @Override

@@ -67,24 +67,48 @@ public class Repo implements Parcelable {
         return mName;
     }
 
+    public void setName(String name) {
+        mName = name;
+    }
+
     public String getDescription() {
         return mDescription;
+    }
+
+    public void setDescription(String description) {
+        mDescription = description;
     }
 
     public String getUrl() {
         return mHtmlUrl;
     }
 
+    public void setHtmlUrl(String htmlUrl) {
+        mHtmlUrl = htmlUrl;
+    }
+
     public String getWatchers() {
         return getFormattedNumber(mWatchersCount);
+    }
+
+    public void setWatchersCount(int watchersCount) {
+        mWatchersCount = watchersCount;
     }
 
     public String getStars() {
         return getFormattedNumber(mStargazersCount);
     }
 
+    public void setStargazersCount(int stargazersCount) {
+        mStargazersCount = stargazersCount;
+    }
+
     public String getForks() {
         return getFormattedNumber(mForksCount);
+    }
+
+    public void setForksCount(int forksCount) {
+        mForksCount = forksCount;
     }
 
     @Override

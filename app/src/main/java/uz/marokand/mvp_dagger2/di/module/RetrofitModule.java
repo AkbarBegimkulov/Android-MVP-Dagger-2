@@ -127,7 +127,7 @@ public class RetrofitModule {
      */
     @Provides
     @GithubApiInfo
-    static Retrofit provideGithubRetrofit(Retrofit.Builder builder, String baseUrl) {
+    static Retrofit provideGithubRetrofit(Retrofit.Builder builder, @GithubApiInfo String baseUrl) {
 
         return builder.baseUrl(baseUrl).build();
     }

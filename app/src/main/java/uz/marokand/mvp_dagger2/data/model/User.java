@@ -16,7 +16,6 @@ import java.util.List;
 
 public class User implements Parcelable {
 
-    public static final String USER = "user";
     public static final Creator<User> CREATOR = new Creator<User>() {
         @Override
         public User createFromParcel(Parcel in) {

@@ -25,6 +25,8 @@ import uz.marokand.mvp_dagger2.data.model.Repo;
 import uz.marokand.mvp_dagger2.data.model.User;
 import uz.marokand.mvp_dagger2.widget.RepositoriesAdapter;
 
+import static uz.marokand.mvp_dagger2.Navigator.USER;
+
 public class MainActivity extends MvpAppCompatActivity
         implements MainView, RepositoriesAdapter.ItemClickListener {
 
@@ -50,7 +52,7 @@ public class MainActivity extends MvpAppCompatActivity
         ButterKnife.bind(this);
 
         Intent intent = getIntent();
-        User user = intent.getParcelableExtra(User.USER);
+        User user = intent.getParcelableExtra(USER);
         if (user == null) return;
         mPresenter.setUser(user);
     }

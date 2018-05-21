@@ -7,6 +7,8 @@ import dagger.Component;
 import dagger.android.support.AndroidSupportInjectionModule;
 import uz.marokand.mvp_dagger2.App;
 import uz.marokand.mvp_dagger2.di.module.AppModule;
+import uz.marokand.mvp_dagger2.ui.main.MainPresenter;
+import uz.marokand.mvp_dagger2.ui.search.SearchPresenter;
 
 /**
  * Injects application dependencies.
@@ -20,6 +22,10 @@ import uz.marokand.mvp_dagger2.di.module.AppModule;
 public interface AppComponent {
 
     void inject(App app);
+
+    void inject(SearchPresenter presenter);
+
+    void inject(MainPresenter presenter);
 
     @Component.Builder
     interface Builder {

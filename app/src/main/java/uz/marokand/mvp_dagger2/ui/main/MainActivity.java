@@ -14,6 +14,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.makeramen.roundedimageview.RoundedImageView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import dagger.android.AndroidInjection;
 import uz.marokand.mvp_dagger2.R;
 import uz.marokand.mvp_dagger2.data.model.Repo;
@@ -23,23 +25,23 @@ import uz.marokand.mvp_dagger2.widget.RepositoriesAdapter;
 public class MainActivity extends AppCompatActivity
         implements RepositoriesAdapter.ItemClickListener {
 
-    private RoundedImageView mAvatarView;
-    private TextView mNameView;
-    private TextView mSecondaryView;
-    private TextView mEmptyView;
-    private RecyclerView mRecyclerView;
+    @BindView(R.id.avatar)
+    RoundedImageView mAvatarView;
+    @BindView(R.id.name_view)
+    TextView mNameView;
+    @BindView(R.id.secondary_view)
+    TextView mSecondaryView;
+    @BindView(R.id.no_repositories)
+    TextView mEmptyView;
+    @BindView(R.id.recycler_view)
+    RecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        mAvatarView = findViewById(R.id.avatar);
-        mNameView = findViewById(R.id.name_view);
-        mSecondaryView = findViewById(R.id.secondary_view);
-        mEmptyView = findViewById(R.id.no_repositories);
-        mRecyclerView = findViewById(R.id.recycler_view);
+        ButterKnife.bind(this);
 
         Intent intent = getIntent();
         User user = intent.getParcelableExtra(User.USER);
@@ -51,7 +53,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    private void setUserInfos(User user){
+    private void setUserInfos(User user) {
         Glide.with(this)
                 .load(user.getAvatar())
                 .apply(new RequestOptions()

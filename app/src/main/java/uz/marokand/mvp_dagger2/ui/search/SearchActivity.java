@@ -12,7 +12,6 @@ import android.support.annotation.StringRes;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 import android.widget.EditText;
 
 import org.json.JSONArray;
@@ -28,15 +27,19 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import dagger.android.AndroidInjection;
 import uz.marokand.mvp_dagger2.R;
 import uz.marokand.mvp_dagger2.data.model.Repo;
 import uz.marokand.mvp_dagger2.data.model.User;
 import uz.marokand.mvp_dagger2.ui.main.MainActivity;
 
-public class SearchActivity extends AppCompatActivity implements View.OnClickListener {
+public class SearchActivity extends AppCompatActivity {
 
-    private EditText mSearchView;
+    @BindView(R.id.login)
+    EditText mSearchView;
     private User mUser;
 
     public static ProgressDialog showProgress(Context context, @StringRes int messageId) {
@@ -58,12 +61,11 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-        mSearchView = findViewById(R.id.login);
-        findViewById(R.id.btn_go).setOnClickListener(this);
+        ButterKnife.bind(this);
     }
 
-    @Override
-    public void onClick(View v) {
+    @OnClick(R.id.btn_go)
+    void onGoClicked() {
         String login = mSearchView.getText().toString();
 
         if (login.isEmpty()) {

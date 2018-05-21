@@ -45,15 +45,6 @@ public class User implements Parcelable {
     private String mAddress;
     private List<Repo> mRepositories;
 
-    public User(String login) {
-        mLogin = login;
-        mAvatar = "";
-        mName = "";
-        mCompany = "";
-        mAddress = "";
-        mRepositories = new ArrayList<>();
-    }
-
     protected User(Parcel in) {
         mLogin = in.readString();
         mAvatar = in.readString();
@@ -115,15 +106,17 @@ public class User implements Parcelable {
     }
 
     public List<Repo> getRepositories() {
-        return mRepositories;
+        return mRepositories == null ? new ArrayList<>() : mRepositories;
     }
 
     public void addRepository(Repo repo) {
+        if (mRepositories == null) mRepositories = new ArrayList<>();
         mRepositories.add(repo);
     }
 
     public void addRepositories(List<Repo> repositories) {
         if (repositories == null) return;
+        if (mRepositories == null) mRepositories = new ArrayList<>();
         mRepositories.addAll(repositories);
     }
 

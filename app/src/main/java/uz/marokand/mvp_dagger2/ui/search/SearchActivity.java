@@ -1,8 +1,11 @@
 package uz.marokand.mvp_dagger2.ui.search;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
@@ -37,6 +40,21 @@ public class SearchActivity extends MvpAppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         ButterKnife.bind(this);
+        mSearchView.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                /*
+                 * hide keyboard
+                 */
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (imm != null) {
+                    imm.hideSoftInputFromWindow(mSearchView.getWindowToken(), 0);
+                }
+
+                mPresenter.onSearch(mSearchView.getText().toString());
+                return true;
+            }
+            return false;
+        });
     }
 
     @OnClick(R.id.btn_go)

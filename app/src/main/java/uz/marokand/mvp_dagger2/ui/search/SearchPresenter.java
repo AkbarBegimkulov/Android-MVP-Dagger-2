@@ -32,16 +32,17 @@ public class SearchPresenter extends MvpPresenter<SearchView> {
             getViewState().showMessage(R.string.empty_login);
             return;
         }
-        if (mApiService.noConnection()) {
-            getViewState().showMessage(R.string.no_internet);
-            return;
-        }
         getUserInfo(userName);
     }
 
     private void getUserInfo(String userName) {
+        if (mApiService.noConnection()) {
+            getViewState().showMessage(R.string.no_internet);
+            return;
+        }
         getViewState().showProgress(R.string.msg_api_calling);
         mApiService.getUser(userName).subscribe(response -> {
+            getViewState().hideProgress();
             mUser = response;
             getUserRepositories(response.getLogin());
         }, error -> {
@@ -51,6 +52,11 @@ public class SearchPresenter extends MvpPresenter<SearchView> {
     }
 
     private void getUserRepositories(String userName) {
+        if (mApiService.noConnection()) {
+            getViewState().showMessage(R.string.no_internet);
+            return;
+        }
+        getViewState().showProgress(R.string.msg_api_calling);
         mApiService.getRepositories(userName).subscribe(response -> {
             getViewState().hideProgress();
             mUser.addRepositories(response);

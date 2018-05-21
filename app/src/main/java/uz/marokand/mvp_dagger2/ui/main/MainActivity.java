@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.makeramen.roundedimageview.RoundedImageView;
 
+import dagger.android.AndroidInjection;
 import uz.marokand.mvp_dagger2.R;
 import uz.marokand.mvp_dagger2.data.model.Repo;
 import uz.marokand.mvp_dagger2.data.model.User;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 

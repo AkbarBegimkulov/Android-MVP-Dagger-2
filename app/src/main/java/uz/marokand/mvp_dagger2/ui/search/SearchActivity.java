@@ -28,6 +28,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import dagger.android.AndroidInjection;
 import uz.marokand.mvp_dagger2.R;
 import uz.marokand.mvp_dagger2.data.model.Repo;
 import uz.marokand.mvp_dagger2.data.model.User;
@@ -54,6 +55,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         mSearchView = findViewById(R.id.login);

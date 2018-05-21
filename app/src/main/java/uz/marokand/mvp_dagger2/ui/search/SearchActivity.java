@@ -12,8 +12,12 @@ import android.support.annotation.StringRes;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -57,6 +61,40 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         mSearchView = findViewById(R.id.login);
+
+        mSearchView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    /*
+                     * hide keyboard
+                     */
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    if (imm != null) {
+                        imm.hideSoftInputFromWindow(mSearchView.getWindowToken(), 0);
+                    }
+
+                    String login = mSearchView.getText().toString();
+
+                    if (login.isEmpty()) {
+                        showMessage(R.string.empty_login);
+                        return false;
+                    }
+
+                    if (noConnection()) {
+                        showMessage(R.string.no_internet);
+                        return false;
+                    }
+
+                    mUser = new User(login);
+
+                    new GetUserTask().execute("https://api.github.com/users/" + login);
+                    return true;
+                }
+                return false;
+            }
+        });
+
         findViewById(R.id.btn_go).setOnClickListener(this);
     }
 

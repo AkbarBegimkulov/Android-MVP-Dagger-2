@@ -4,6 +4,8 @@ import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 
 import uz.marokand.mvp_dagger2.App;
+import uz.marokand.mvp_dagger2.data.model.Repo;
+import uz.marokand.mvp_dagger2.data.model.User;
 
 /**
  * @author akbar
@@ -11,9 +13,19 @@ import uz.marokand.mvp_dagger2.App;
  */
 
 @InjectViewState
-public class MainPresenter extends MvpPresenter<MainView>{
+public class MainPresenter extends MvpPresenter<MainView> {
 
-    public MainPresenter() {
+    MainPresenter() {
         App.getAppComponent().inject(this);
+    }
+
+    public void setUser(User user) {
+        getViewState().initUserInfo(user.getAvatar(), user.getName(), user.getSecondaryText());
+        getViewState().initRepositories(user.getRepositories());
+    }
+
+    public void onRepositoryClick(Repo repository) {
+        if (repository.getUrl().equals("")) return;
+        getViewState().openWebUrl(repository.getUrl());
     }
 }
